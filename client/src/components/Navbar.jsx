@@ -30,7 +30,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* second part */}
-      <div className="flex border border-b-1 ">
+      <div className="flex border border-b-1">
         <div className="w-1/2 flex items-center px-20">
           <ul className="flex gap-12 ">
 
