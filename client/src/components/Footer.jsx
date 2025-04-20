@@ -2,10 +2,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-10 flex flex-col items-center">
-      <div className="mx-20 px-4 grid grid-cols-1 md:grid-cols-4 gap-8 justify-items-center">
+    <footer className="bg-gray-900 text-white py-10 flex flex-col items-center h-">
+      <div className="w-full px-6 md:px-20 grid grid-cols-1 md:grid-cols-4 gap-8 justify-items-start md:justify-items-center max-w-7xl">
         {/* Logo + Description */}
-        <div className="">
+        <div>
           <h2 className="text-2xl font-bold mb-3">Trendy Steps BD</h2>
           <p className="text-sm text-gray-400">
             Step into style with our premium collection of shoes for every
@@ -14,7 +14,7 @@ const Footer = () => {
         </div>
 
         {/* Shop Links */}
-        <div className="">
+        <div>
           <h3 className="font-semibold mb-3">Shop</h3>
           <ul className="space-y-2 text-sm text-gray-400">
             <li>
@@ -41,7 +41,7 @@ const Footer = () => {
         </div>
 
         {/* Support Links */}
-        <div className="">
+        <div>
           <h3 className="font-semibold mb-3">Support</h3>
           <ul className="space-y-2 text-sm text-gray-400">
             <li>
@@ -67,8 +67,8 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Newsletter or Social */}
-        <div className="">
+        {/* Social Links */}
+        <div>
           <h3 className="font-semibold mb-3">Stay Connected</h3>
           <p className="text-sm text-gray-400 mb-3">
             Follow us on social media
@@ -87,11 +87,9 @@ const Footer = () => {
         </div>
       </div>
 
-      
-
       {/* Bottom Bar */}
       <div className="mt-10 pt-6 text-center text-sm text-gray-500 border-t border-gray-700 w-full">
-        &copy; {new Date().getFullYear()} TrendySteps BD. All rights reserved.
+        &copy; {new Date().getFullYear()} Trendy Steps BD. All rights reserved.
       </div>
     </footer>
   );
