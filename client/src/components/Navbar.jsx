@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CgProfile } from "react-icons/cg";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoIosSearch } from "react-icons/io";
 import { MdFavoriteBorder } from "react-icons/md";
-import logo from "../assets/logo-only.png";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../assets/logo-only.png";
+import { StoreContext } from "../context/StoreContex";
 
 const Navbar = () => {
+  const { isLoggedIn, logout, user } = useContext(StoreContext);
   const navigate = useNavigate();
   return (
     <div>
       {/* first part */}
       <div className="flex justify-between items-center py-2 px-20  border-b-1">
-        <div className="flex items-center gap-4">
+        <div
+          onClick={() => navigate("/")}
+          className="flex items-center gap-4 cursor-pointer"
+        >
           <img className="w-14" src={logo} alt="" />
           <div>
             <h1 className="text-2xl font-semibold">TRENDY STEPS BD</h1>
@@ -38,15 +42,35 @@ const Navbar = () => {
             <li className="relative group incline-block">
               <CgProfile className="text-2xl text-gray-700 cursor-pointer" />
               <div className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg border opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-20">
-                <p onClick={() => navigate("/login")} className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Login
-                </p>
-                <p className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Settings
-                </p>
-                <p className="block px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Logout
-                </p>
+                {isLoggedIn && user ? (
+                  <>
+                    <p
+                      onClick={() => navigate('/orders')}
+                      className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    >
+                     Orders
+                    </p>
+                    <p
+                      onClick={() => navigate('/profile')}
+                      className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    >
+                      Profile
+                    </p>
+                    <p
+                      onClick={() => logout()}
+                      className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    >
+                      Logout
+                    </p>
+                  </>
+                ) : (
+                  <p
+                    onClick={() => navigate("/login")}
+                    className="block px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  >
+                    Login / Register
+                  </p>
+                )}
               </div>
             </li>
           </ul>
