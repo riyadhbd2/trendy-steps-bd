@@ -51,9 +51,6 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="w-full">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-medium text-gray-900">Login</h1>
-            <p className="text-gray-500 text-sm mt-2">
-              Please sign in to continue
-            </p>
           </div>
 
           {/* Email Input */}

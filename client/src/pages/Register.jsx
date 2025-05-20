@@ -45,7 +45,7 @@ const Register = () => {
     <div className="flex justify-center min-h-screen py-10 bg-gray-100 px-4">
       <div className="w-full h-full max-w-md bg-white p-8 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
           {/* Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -57,7 +57,7 @@ const Register = () => {
               required
               value={formData.name}
               onChange={handleChange}
-              className="w-full mt-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full border p-2 rounded-full"
             />
           </div>
 
@@ -72,7 +72,7 @@ const Register = () => {
               required
               value={formData.email}
               onChange={handleChange}
-              className="w-full mt-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full border p-2 rounded-full"
             />
           </div>
 
@@ -87,12 +87,12 @@ const Register = () => {
               required
               value={formData.password}
               onChange={handleChange}
-              className="w-full mt-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full border p-2 rounded-full"
             />
           </div>
 
           {/* Confirm Password */}
-          <div>
+          <div className="">
             <label className="block text-sm font-medium text-gray-700">
               Confirm Password
             </label>
@@ -102,11 +102,11 @@ const Register = () => {
               required
               value={formData.confirmPassword}
               onChange={handleChange}
-              className="w-full mt-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full border p-2 rounded-full"
             />
           </div>
           {/* Phone Number */}
-          <div>
+          <div className="">
             <label className="block text-sm font-medium text-gray-700">
               Phone Number
             </label>
@@ -116,7 +116,7 @@ const Register = () => {
               required
               value={formData.phoneNumber}
               onChange={handleChange}
-              className="w-full mt-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full mt-1 px-4 py-2 border rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
@@ -133,8 +133,7 @@ const Register = () => {
               onChange={handleChange}
               className="w-full mt-1 px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
             ></textarea>
-          </div>
-          <p>
+              <p className="text-right text-sm">
             Already registered?{" "}
             <span
               onClick={() => navigate("/login")}
@@ -143,11 +142,13 @@ const Register = () => {
               Login
             </span>
           </p>
+          </div>
+        
 
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+            className="mt-3 w-full bg-blue-600 text-white py-2 rounded-full hover:bg-blue-700 transition"
           >
             Register
           </button>
