@@ -72,8 +72,7 @@ export const registerUser = async (req, res) => {
       message: "User registered successfully",
     });
   } catch (error) {
-    console.error("Error registering user:", error);
-    res.status(500).json({ message: "Server error" });
+    res.json({success: false, message: error.message})
   }
 };
 // Login user API
@@ -118,8 +117,7 @@ export const loginUser = async (req, res) => {
       message: "Logged in successfully",
     });
   } catch (error) {
-    console.error("Error logging in:", error);
-    res.status(500).json({ message: "Server error" });
+    return res.json({success:false, message:error.message})
   }
 };
 // logout user API
@@ -147,6 +145,6 @@ export const userInfo = async (req, res) => {
       user,
     });
   } catch (error) {
-    res.status(401).json({ message: "Invalid token" });
+    return res.json({success:false, message: error.message});
   }
 };

@@ -1,18 +1,41 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CgProfile } from "react-icons/cg";
-import { FiShoppingCart, FiMenu } from "react-icons/fi";
-import { IoIosSearch, IoIosClose } from "react-icons/io";
+import { FiMenu, FiShoppingCart } from "react-icons/fi";
+import { IoIosClose, IoIosSearch } from "react-icons/io";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo-only.png";
 import { StoreContext } from "../context/StoreContex";
-import { useState } from "react";
 
 const Navbar = () => {
   const { isLoggedIn, logout, user } = useContext(StoreContext);
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null);
+
+  const menuItems = [
+    "Shoes",
+    "New",
+    "Sale%",
+    "Accessories",
+    "Trends",
+    "Brands",
+    "Occasions",
+  ];
+
+  const dropdownContent = {
+    Shoes: ["Sneakers", "Boots", "Heels"],
+    New: ["Latest Arrivals", "Trending Now", "Editor's Pick"],
+    "Sale%": ["50% Off", "Clearance", "Flash Deals"],
+    Accessories: ["Bags", "Hats", "Watches"],
+    Trends: ["Streetwear", "Minimal", "Bold Colors"],
+    Brands: ["Nike", "Adidas", "Puma"],
+    Occasions: ["Casual", "Formal", "Sport"],
+  };
+
+  // const slugify = (str) =>
+  //   str.toLowerCase().replace(/[%']/g, "").replace(/\s+/g, "-");
 
   return (
     <div className="sticky top-0 z-50 bg-white shadow-sm">
@@ -21,7 +44,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-3">
           {/* Logo and Mobile Menu Button */}
           <div className="flex items-center">
-            <button 
+            <button
               className="lg:hidden mr-4 text-2xl"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
@@ -32,7 +55,9 @@ const Navbar = () => {
               className="flex items-center gap-2 cursor-pointer"
             >
               <img className="w-10 md:w-12" src={logo} alt="Trendy Steps BD" />
-              <h1 className="text-xl md:text-2xl font-bold hidden sm:block">TRENDY STEPS BD</h1>
+              <h1 className="text-xl md:text-2xl font-bold hidden sm:block">
+                TRENDY STEPS BD
+              </h1>
             </div>
           </div>
 
@@ -45,15 +70,15 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Icons - Search, Favorites, Cart, Profile */}
+          {/* Icons */}
           <div className="flex items-center gap-4 md:gap-6">
-            <button 
+            <button
               className="lg:hidden text-xl"
               onClick={() => setSearchOpen(!searchOpen)}
             >
               <IoIosSearch />
             </button>
-            
+
             <div className="hidden lg:flex items-center gap-6">
               <MdFavoriteBorder className="text-xl cursor-pointer hover:text-blue-600 transition-colors" />
               <FiShoppingCart className="text-xl cursor-pointer hover:text-blue-600 transition-colors" />
@@ -97,8 +122,8 @@ const Navbar = () => {
             <div className="flex lg:hidden items-center gap-4">
               <MdFavoriteBorder className="text-xl cursor-pointer hover:text-blue-600 transition-colors" />
               <FiShoppingCart className="text-xl cursor-pointer hover:text-blue-600 transition-colors" />
-              <CgProfile 
-                className="text-xl cursor-pointer hover:text-blue-600 transition-colors" 
+              <CgProfile
+                className="text-xl cursor-pointer hover:text-blue-600 transition-colors"
                 onClick={() => navigate(isLoggedIn ? "/profile" : "/login")}
               />
             </div>
@@ -118,20 +143,53 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Bottom Section - Desktop */}
-      <div className="hidden lg:flex border-t border-gray-200 px-20">
-        <div className="flex justify-between w-full">
-          <ul className="flex gap-8 py-3">
-            <li className="hover:text-blue-600 transition-colors cursor-pointer">Shoes</li>
-            <li className="hover:text-blue-600 transition-colors cursor-pointer">New</li>
-            <li className="hover:text-blue-600 transition-colors cursor-pointer">Sale%</li>
-            <li className="hover:text-blue-600 transition-colors cursor-pointer">Accessories</li>
-            <li className="hover:text-blue-600 transition-colors cursor-pointer">Trends</li>
-            <li className="hover:text-blue-600 transition-colors cursor-pointer">Brands</li>
-            <li className="hover:text-blue-600 transition-colors cursor-pointer">Occasions</li>
-          </ul>
-          <div className="flex items-center relative w-96"> {/* Increased width */}
-            <IoIosSearch className="absolute left-3 text-xl text-gray-400" />
+      {/* Bottom Section - Shared Dropdown Menu */}
+      <div className="hidden lg:block border-t border-gray-200">
+        <div className="flex justify-between items-center px-20">
+          {/* Menu Items */}
+          <div className="relative" onMouseLeave={() => setHoveredItem(null)}>
+            <ul
+              className="flex gap-8 py-3 bg-white"
+              onMouseEnter={() => hoveredItem || setHoveredItem(menuItems[0])}
+            >
+              {menuItems.map((item) => (
+                <li
+                  key={item}
+                  className="hover:text-blue-600 cursor-pointer transition-colors"
+                  onMouseOver={() => setHoveredItem(item)} // Only this updates hovered item
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            {/* Shared Full-Width Dropdown */}
+            {hoveredItem && (
+              <div
+                onMouseEnter={() => {}}
+                onMouseLeave={() => setHoveredItem(null)}
+                className="absolute left-0 top-full w-screen h-[50vh] bg-white border-t shadow-xl z-40 transition-all"
+              >
+                {/* Container to align links to the absolute left of the screen */}
+                <div className="relative h-full">
+                  <div className="absolute top-8 left-0 flex flex-col gap-4 max-w-xs px-4">
+                    {dropdownContent[hoveredItem]?.map((subItem, i) => (
+                      <p>
+                        key={i}
+                        className="text-lg text-gray-700 hover:text-blue-600
+                        transition-colors"
+                        {subItem}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Desktop Search */}
+          <div className="relative w-96">
+            <IoIosSearch className="absolute left-3 top-2.5 text-xl text-gray-400" />
             <input
               className="border w-full rounded-full h-10 pl-10 pr-4 focus:outline-none"
               type="search"
@@ -139,6 +197,27 @@ const Navbar = () => {
             />
           </div>
         </div>
+
+        {/* Shared Full-Width Dropdown */}
+        {hoveredItem && (
+          <div
+            onMouseEnter={() => setHoveredItem(hoveredItem)}
+            onMouseLeave={() => setHoveredItem(null)}
+            className="absolute left-0 w-full h-[50vh] bg-white border-t shadow-xl z-40 transition-all"
+          >
+            <div className="flex flex-col px-20 mt-4 gap-2">
+              {dropdownContent[hoveredItem]?.map((subItem, i) => (
+                <p
+                  key={i}
+                  className=" text-gray-700 text-sm
+                  transition-colors cursor-pointer"
+                >
+                  {subItem}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Mobile Menu */}
@@ -149,13 +228,11 @@ const Navbar = () => {
               <li className="py-2 border-b border-gray-100">Women</li>
               <li className="py-2 border-b border-gray-100">Men</li>
               <li className="py-2 border-b border-gray-100">Kids</li>
-              <li className="py-2 border-b border-gray-100">Shoes</li>
-              <li className="py-2 border-b border-gray-100">New</li>
-              <li className="py-2 border-b border-gray-100">Sale%</li>
-              <li className="py-2 border-b border-gray-100">Accessories</li>
-              <li className="py-2 border-b border-gray-100">Trends</li>
-              <li className="py-2 border-b border-gray-100">Brands</li>
-              <li className="py-2">Occasions</li>
+              {menuItems.map((item) => (
+                <li key={item} className="py-2 border-b border-gray-100">
+                  {item}
+                </li>
+              ))}
             </ul>
 
             {/* Profile dropdown for mobile */}

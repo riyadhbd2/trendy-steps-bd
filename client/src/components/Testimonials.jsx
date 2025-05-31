@@ -48,7 +48,7 @@ const Testimonials = () => {
     </svg>
   );
   return (
-    <div className="flex flex-col items-center px-6 md:px-16 lg:px-24  pt-20 pb-30 my-20">
+    <div className="flex flex-col items-center px-6 md:px-16 lg:px-24 pt-20 pb-30 my-5">
       <div className="flex flex-col justify-center items-center text-center">
         <h1 className="text-4xl md:text-[40px] font-playfair">
           Customer Testimonials

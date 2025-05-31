@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
-const BestSeller = () => {
+const KidsShoesList = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const products = [
@@ -85,8 +85,9 @@ const BestSeller = () => {
   );
 
   return (
-    <div className="relative  mx-auto mt-20 px-4 sm:px-6 lg:px-20 py-12">
-      <h2 className="text-3xl font-bold mb-8">Best Seller</h2>
+    <div className="relative mx-auto mt-5 px-4 sm:px-6 lg:px-20 py-5">
+      <h2 className="text-3xl font-bold mb-8">Kids Collections
+      </h2>
 
       <div className="relative overflow-hidden">
         <button
@@ -153,4 +154,4 @@ const BestSeller = () => {
   );
 };
 
-export default BestSeller;
+export default KidsShoesList;

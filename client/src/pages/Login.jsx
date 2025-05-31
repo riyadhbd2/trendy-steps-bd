@@ -59,7 +59,10 @@ const Login = () => {
               <AiOutlineMail />
               <input
                 type="email"
-                placeholder="Email id"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
                 className="bg-transparent text-gray-500 placeholder-gray-500 outline-none text-sm w-full h-full"
                 required
               />
@@ -76,8 +79,8 @@ const Login = () => {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                value={formData.email}
-                className=" text-gray-500 outline-none text-sm w-full h-full"
+                placeholder="Password"
+                className=" text-gray-500 outline-none text-sm w-full h-full placeholder-gray-500"
                 required
               />
             </div>
