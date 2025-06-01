@@ -5,9 +5,9 @@ const Sidebar = () => {
   const { pathname } = useLocation();
 
   const links = [
-    { to: '/', label: 'Dashboard', icon: <Home size={18} /> },
-    { to: '/users', label: 'Users', icon: <Users size={18} /> },
-    { to: '/products', label: 'Products', icon: <Package size={18} /> },
+    { to: '/', label: 'Add Products', icon: <Home size={18} /> },
+    { to: '/products', label: 'Products List', icon: <Users size={18} /> },
+    { to: '/orders', label: 'Orders List', icon: <Package size={18} /> },
   ];
 
   return (

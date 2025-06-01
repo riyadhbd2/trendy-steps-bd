@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Navbar from "./components/Navbar";
-import Dashboard from "./pages/Dashboard";
-import Products from "./pages/Products";
-import Users from "./pages/Users";
+import AddProducts from "./pages/AddProducts";
+import ProductsList from "./pages/ProductsList";
+import OrdersList from "./pages/OrdersList";
 
 const App = () => {
   return (
@@ -11,9 +11,9 @@ const App = () => {
       <Navbar />
       <Layout>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/" element={<AddProducts />} />
+          <Route path="/products" element={<ProductsList />} />
+          <Route path="/orders" element={<OrdersList />} />
         </Routes>
       </Layout>
     </div>

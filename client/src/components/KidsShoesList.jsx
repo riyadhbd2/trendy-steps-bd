@@ -101,7 +101,7 @@ const KidsShoesList = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {visibleItems.map((product) => (
             <div key={product.id} className="flex-shrink-0">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+              <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col border">
                 <img
                   src={product.image}
                   alt={product.name}
