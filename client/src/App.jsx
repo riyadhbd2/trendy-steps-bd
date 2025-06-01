@@ -9,6 +9,7 @@ import Orders from "./pages/Orders";
 import PrivateRoute from "./routes/Privateroute";
 import { ToastContainer} from 'react-toastify';
 import Men from "./pages/Men";
+import Cart from "./pages/Cart";
 
 
 const App = () => {
@@ -24,6 +25,9 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/orders" element={<PrivateRoute>
           <Orders />
+        </PrivateRoute>} />
+        <Route path="/cart" element={<PrivateRoute>
+          <Cart />
         </PrivateRoute>} />
       </Routes>
     </div>
